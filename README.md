@@ -2,7 +2,7 @@
 
 ## 📖 Overview
 
-This project is a Deep Learning application designed to detect and classify diseases in fruits (e.g., [Apple, Banana, Orange]). By utilizing Convolutional Neural Networks (CNNs) and Computer Vision, this model analyzes images of fruit leaves or skin to identify potential infections, helping farmers and agriculturists take timely action.
+This project is a Deep Learning application designed to detect and classify diseases in fruits (Orange). By utilizing Convolutional Neural Networks (CNNs) and Computer Vision, this model analyzes images of fruit leaves or skin to identify potential infections, helping farmers and agriculturists take timely action.
 
 ## 🚀 Key Features
 
