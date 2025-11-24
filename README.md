@@ -6,9 +6,7 @@ This project is a Deep Learning application designed to detect and classify dise
 
 ## 🚀 Key Features
 
-High Accuracy: Trained on a dataset of [Number] images.
-
-Multi-Class Classification: Can detect [List diseases, e.g., Apple Scab, Black Rot] and healthy fruits.
+High Accuracy: Trained on a large dataset of images.
 
 Fast Processing: Optimized for quick inference on local machines.
 
@@ -76,7 +74,7 @@ python src/train.py
 
 To detect disease in a specific image:
 ```bash
-python src/predict.py --image "path/to/fruit_image.jpg"
+python predict.py  "path/to/fruit_image.jpg"
 ```
 
 ### 📊 Dataset
