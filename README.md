@@ -1,10 +1,10 @@
-🍎 Fruit Disease Detection AI
+# 🍎 Fruit Disease Detection AI
 
-📖 Overview
+## 📖 Overview
 
 This project is a Deep Learning application designed to detect and classify diseases in fruits (e.g., [Apple, Banana, Orange]). By utilizing Convolutional Neural Networks (CNNs) and Computer Vision, this model analyzes images of fruit leaves or skin to identify potential infections, helping farmers and agriculturists take timely action.
 
-🚀 Key Features
+## 🚀 Key Features
 
 High Accuracy: Trained on a dataset of [Number] images.
 
@@ -14,7 +14,7 @@ Fast Processing: Optimized for quick inference on local machines.
 
 User-Friendly: Simple script to test custom images.
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 
 Language: Python
 
@@ -24,7 +24,7 @@ Image Processing: OpenCV (cv2)
 
 Data Handling: NumPy, Pandas
 
-📂 Project Structure
+## 📂 Project Structure
 
 fruitdiseaseai/
 │
@@ -35,9 +35,9 @@ fruitdiseaseai/
 └── README.md           # Project documentation
 
 
-⚙️ Installation & Setup
+## ⚙️ Installation & Setup
 
-1. Clone the Repository
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/AryanJadile/fruitdiseaseai.git
 ```
@@ -45,26 +45,26 @@ git clone https://github.com/AryanJadile/fruitdiseaseai.git
 cd fruitdiseaseai
 ```
 
-2. Create a Virtual Environment (Recommended)
+### 2. Create a Virtual Environment (Recommended)
 
-# Windows
+#### Windows
 ```bash
 python -m venv venv
 venv\Scripts\activate
 ```
 
-# Mac/Linux
+#### Mac/Linux
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-3. Install Dependencies
+### 3. Install Dependencies
 
 pip install -r requirements.txt
 
 
-🧠 How to Run
+### 🧠 How to Run
 
 Training the Model
 
