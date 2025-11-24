@@ -1,0 +1,16 @@
+Bacterial Spot
+CItrus Fruit Healthy
+CItrus Fruit with Canker
+Citrus Fruit with Black spot
+Citrus Fruit with Greening
+Citrus Leaf healthy
+Citrus Leaf with Black spot
+Citrus Leaf with Melanose
+Citrus Leaf with canker
+Citrus Leaf with greening
+Citrus fruit with Scab
+Healthy Fruit
+Healthy Leaf
+Shot Hole
+Unhealthy Fruit
+Wilted Leaf
