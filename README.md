@@ -26,7 +26,7 @@ Data Handling: NumPy, Pandas
 
 ## 📂 Project Structure
 ```bash
-./fruitdiseaseai/<br>
+./fruitdiseaseai/ <br>
 ./│
 
 ./├── src/                # Source code for training and prediction
