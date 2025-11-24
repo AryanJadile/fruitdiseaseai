@@ -73,33 +73,22 @@ To train the model from scratch using the dataset:
 python src/train.py
 ```
 
-Testing / Prediction
+### Testing / Prediction
 
 To detect disease in a specific image:
 ```bash
 python src/predict.py --image "path/to/fruit_image.jpg"
 ```
 
-📊 Dataset
+### 📊 Dataset
+Dataset: [https://data.mendeley.com/datasets/3f83gxmv57/2](https://data.mendeley.com/datasets/3f83gxmv57/2)
+You can also use your custom data to train the model.
 
-The dataset used for this project includes images of [Fruit Names].
-
-Source: [Link to Kaggle dataset or "Collected manually"]
-
-Preprocessing: Images resized to [224x224], normalized, and augmented.
-
-🚧 Challenges & Future Improvements
+### 🚧 Challenges & Future Improvements
 
 Current Challenge: Handling large model files via Git LFS.
 
 Future Goal: Deploy as a web app using Streamlit or Flask.
 
 Future Goal: Add support for real-time detection via webcam.
-
-🤝 Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any improvements.
-
-📜 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+.
