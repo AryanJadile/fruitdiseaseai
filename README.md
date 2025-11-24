@@ -6,20 +6,15 @@ This project is a Deep Learning application designed to detect and classify dise
 
 ## 🚀 Key Features
 
-High Accuracy: Trained on a large dataset of images.
-
-Fast Processing: Optimized for quick inference on local machines.
-
+High Accuracy: Trained on a large dataset of images.  
+Fast Processing: Optimized for quick inference on local machines.  
 User-Friendly: Simple script to test custom images.
 
 ## 🛠️ Tech Stack
 
-Language: Python
-
-Deep Learning: TensorFlow / Keras
-
-Image Processing: OpenCV (cv2)
-
+Language: Python  
+Deep Learning: TensorFlow / Keras  
+Image Processing: OpenCV (cv2)  
 Data Handling: NumPy, Pandas
 
 ## 📂 Project Structure
@@ -63,8 +58,7 @@ pip install -r requirements.txt
 
 ### 🧠 How to Run
 
-Training the Model
-
+Training the Model  
 To train the model from scratch using the dataset:
 ```bash
 python src/train.py
@@ -83,9 +77,7 @@ You can also use your custom data to train the model.
 
 ### 🚧 Challenges & Future Improvements
 
-Current Challenge: Handling large model files via Git LFS.
-
-Future Goal: Deploy as a web app using Streamlit or Flask.
-
+Current Challenge: Handling large model files via Git LFS.  
+Future Goal: Deploy as a web app using Streamlit or Flask.  
 Future Goal: Add support for real-time detection via webcam.
 .
