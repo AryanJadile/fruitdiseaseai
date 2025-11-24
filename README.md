@@ -25,7 +25,7 @@ Image Processing: OpenCV (cv2)
 Data Handling: NumPy, Pandas
 
 ## 📂 Project Structure
-
+```bash
 ./fruitdiseaseai/
 
 ./│
@@ -39,7 +39,7 @@ Data Handling: NumPy, Pandas
 ./├── requirements.txt    # List of dependencies
 
 ./└── README.md           # Project documentation
-
+```
 
 ## ⚙️ Installation & Setup
 
