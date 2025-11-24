@@ -38,9 +38,10 @@ fruitdiseaseai/
 ⚙️ Installation & Setup
 
 1. Clone the Repository
-
-``` git clone [https://github.com/AryanJadile/fruitdiseaseai.git](https://github.com/AryanJadile/fruitdiseaseai.git)
-cd fruitdiseaseai```
+```bash
+git clone [https://github.com/AryanJadile/fruitdiseaseai.git](https://github.com/AryanJadile/fruitdiseaseai.git)
+```
+cd fruitdiseaseai
 
 
 2. Create a Virtual Environment (Recommended)
