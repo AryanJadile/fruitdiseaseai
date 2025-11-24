@@ -26,17 +26,12 @@ Data Handling: NumPy, Pandas
 
 ## 📂 Project Structure
 ```bash
-./fruitdiseaseai/ <br>
+./fruitdiseaseai/
 ./│
-
 ./├── src/                # Source code for training and prediction
-
 ./├── model/              # Saved .keras/.h5 models (Use Git LFS)
-
 ./├── dataset/            # Raw images (Not included in repo)
-
 ./├── requirements.txt    # List of dependencies
-
 ./└── README.md           # Project documentation
 ```
 
