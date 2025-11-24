@@ -39,21 +39,25 @@ fruitdiseaseai/
 
 1. Clone the Repository
 ```bash
-git clone [https://github.com/AryanJadile/fruitdiseaseai.git](https://github.com/AryanJadile/fruitdiseaseai.git)
+git clone https://github.com/AryanJadile/fruitdiseaseai.git
 ```
+```bash
 cd fruitdiseaseai
-
+```
 
 2. Create a Virtual Environment (Recommended)
 
 # Windows
+```bash
 python -m venv venv
 venv\Scripts\activate
+```
 
 # Mac/Linux
+```bash
 python3 -m venv venv
 source venv/bin/activate
-
+```
 
 3. Install Dependencies
 
