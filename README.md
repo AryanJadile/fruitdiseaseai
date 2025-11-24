@@ -60,25 +60,25 @@ source venv/bin/activate
 ```
 
 ### 3. Install Dependencies
-
+```bash
 pip install -r requirements.txt
-
+```
 
 ### 🧠 How to Run
 
 Training the Model
 
 To train the model from scratch using the dataset:
-
+```bash
 python src/train.py
-
+```
 
 Testing / Prediction
 
 To detect disease in a specific image:
-
+```bash
 python src/predict.py --image "path/to/fruit_image.jpg"
-
+```
 
 📊 Dataset
 
