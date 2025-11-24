@@ -39,7 +39,7 @@ fruitdiseaseai/
 
 1. Clone the Repository
 
-```git clone [https://github.com/AryanJadile/fruitdiseaseai.git](https://github.com/AryanJadile/fruitdiseaseai.git)
+``` git clone [https://github.com/AryanJadile/fruitdiseaseai.git](https://github.com/AryanJadile/fruitdiseaseai.git)
 cd fruitdiseaseai```
 
 
