@@ -1,4 +1,4 @@
-🍎 Fruit Disease Detection AI
+🍎 Kisan Drishti (Fruit Disease Detection AI)
 
 📖 Overview
 

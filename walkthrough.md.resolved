@@ -1,0 +1,45 @@
+# Fruit Disease AI Walkthrough
+
+I have successfully implemented the frontend and backend for the Fruit Disease AI project.
+
+## Changes Made
+
+### Backend
+- **[predict.py](file:///d:/projects/fruitdiseaseai/predict.py)**: Refactored to be reusable and return structured data.
+- **[app.py](file:///d:/projects/fruitdiseaseai/app.py)**: Created a FastAPI application to serve the model via a REST API.
+- **[requirements.txt](file:///d:/projects/fruitdiseaseai/requirements.txt)**: Added necessary dependencies (`fastapi`, `uvicorn`, `python-multipart`, `numpy<2`).
+
+### Frontend
+- **React + Vite**: Initialized a new project in `frontend/`.
+- **Tailwind CSS**: Configured with `@tailwindcss/postcss` for styling.
+- **Components**:
+    - [ImageUpload.jsx](file:///d:/projects/fruitdiseaseai/frontend/src/components/ImageUpload.jsx): Handles drag-and-drop image uploads.
+    - [ResultDisplay.jsx](file:///d:/projects/fruitdiseaseai/frontend/src/components/ResultDisplay.jsx): Visualizes the prediction result and confidence score.
+    - [App.jsx](file:///d:/projects/fruitdiseaseai/frontend/src/App.jsx): Orchestrates the application logic.
+
+## Verification
+
+### Backend API
+Verified the backend API using `curl` with a test image.
+```json
+{"class":"Citrus Leaf with canker","confidence":8.2233901689052582}
+```
+
+### Frontend UI
+Verified that the frontend loads correctly with the dark theme and interactive elements.
+
+![Frontend UI](/C:/Users/aryan/.gemini/antigravity/brain/e669e248-8a08-4d5e-b0d3-98825b6b1207/frontend_ui_loaded_1764324232529.png)
+
+## How to Run
+
+1.  **Backend**:
+    ```bash
+    cd d:\projects\fruitdiseaseai
+    uvicorn app:app --host 0.0.0.0 --port 8000
+    ```
+
+2.  **Frontend**:
+    ```bash
+    cd d:\projects\fruitdiseaseai\frontend
+    npm run dev
+    ```

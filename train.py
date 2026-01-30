@@ -5,11 +5,11 @@ import os
 import numpy as np
 
 # --- 1. Define Constants ---
-DATA_DIR = 'Processed Dataset'
+DATA_DIR = 'Cassava'
 # MobileNetV2 requires a specific input size
 IMG_SIZE = (224, 224) 
-BATCH_SIZE = 32
-EPOCHS = 15 
+BATCH_SIZE = 8 # Further reduced batch size
+EPOCHS = 10 
 
 # --- 2. Load and Preprocess Data ---
 print(f"Loading and preprocessing data from: {DATA_DIR}")
@@ -53,10 +53,10 @@ with open('model/class_names.txt', 'w') as f:
     for item in class_names:
         f.write("%s\n" % item)
 
-# --- 4. Configure for Performance ---
+# --- 4. Configure for Performance (No Cache for low RAM) ---
 AUTOTUNE = tf.data.AUTOTUNE
-train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
-val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
+train_ds = train_ds.shuffle(1000).prefetch(buffer_size=AUTOTUNE)
+val_ds = val_ds.prefetch(buffer_size=AUTOTUNE)
 
 # --- 5. Build the Transfer Learning Model ---
 print("Building the transfer learning model...")
@@ -109,12 +109,16 @@ model.summary()
 
 # --- 8. Train the Model ---
 print("Starting training...")
-history = model.fit(
-    train_ds,
-    validation_data=val_ds,
-    epochs=EPOCHS
-)
-print("Training finished.")
+try:
+    history = model.fit(
+        train_ds,
+        validation_data=val_ds,
+        epochs=EPOCHS
+    )
+    print("Training finished.")
+except Exception as e:
+    print(f"Training failed: {e}")
+    exit(1)
 
 # --- 9. Save the Model ---
 print("Saving the trained model...")

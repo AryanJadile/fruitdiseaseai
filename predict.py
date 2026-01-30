@@ -25,8 +25,7 @@ def preprocess_image(image_path):
         # Load image using OpenCV
         img = cv2.imread(image_path)
         if img is None:
-            print(f"Error: Could not read image from {image_path}")
-            return None
+            raise ValueError(f"Could not read image from {image_path}")
         
         # Resize to the model's expected input size
         img = cv2.resize(img, IMG_SIZE)
@@ -37,20 +36,13 @@ def preprocess_image(image_path):
         # Convert to a batch of 1
         img_array = tf.expand_dims(img, 0) 
         
-        #
-        #   *** THIS IS THE FIX ***
-        #   Cast to float32, but DO NOT preprocess.
-        #   The model itself will do the preprocessing.
-        #
+        # Cast to float32
         img_array = tf.cast(img_array, tf.float32)
-        
-        #   *** REMOVED THIS LINE ***
-        #   img_array = tf.keras.applications.mobilenet_v2.preprocess_input(img_array)
         
         return img_array
     except Exception as e:
         print(f"Error preprocessing image: {e}")
-        return None
+        raise e
 
 def predict_disease(image_path):
     """Predicts the disease for a given image."""
@@ -58,25 +50,21 @@ def predict_disease(image_path):
     # Preprocess the image
     processed_image = preprocess_image(image_path)
     if processed_image is None:
-        return
+        raise ValueError("Image preprocessing failed")
     
     # Make prediction
-    # The model will now receive the [0, 255] float image 
-    # and perform its internal preprocessing.
     predictions = model.predict(processed_image)
     
     # 'predictions' is an array of probabilities for each class
-    # We find the one with the highest probability
     score = tf.nn.softmax(predictions[0])
     predicted_class_index = np.argmax(score)
     predicted_class_name = class_names[predicted_class_index]
     confidence = 100 * np.max(score)
     
-    print("\n--- Prediction Result ---")
-    print(f"Image: {os.path.basename(image_path)}")
-    print(f"Disease: {predicted_class_name}")
-    print(f"Confidence: {confidence:.2f}%")
-    print("-------------------------\n")
+    return {
+        "class": predicted_class_name,
+        "confidence": float(confidence)
+    }
 
 # --- Main execution ---
 if __name__ == "__main__":
@@ -85,4 +73,12 @@ if __name__ == "__main__":
         sys.exit(1)
         
     image_path = sys.argv[1]
-    predict_disease(image_path)
+    try:
+        result = predict_disease(image_path)
+        print("\n--- Prediction Result ---")
+        print(f"Image: {os.path.basename(image_path)}")
+        print(f"Disease: {result['class']}")
+        print(f"Confidence: {result['confidence']:.2f}%")
+        print("-------------------------\n")
+    except Exception as e:
+        print(f"Prediction failed: {e}")
