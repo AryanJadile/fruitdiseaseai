@@ -36,8 +36,11 @@ def preprocess_image(image_path):
         # Convert to a batch of 1
         img_array = tf.expand_dims(img, 0) 
         
-        # Cast to float32
+        # Cast to float32 first
         img_array = tf.cast(img_array, tf.float32)
+
+        # Preprocess using MobileNetV2's logic (scaling to [-1, 1])
+        img_array = tf.keras.applications.mobilenet_v2.preprocess_input(img_array)
         
         return img_array
     except Exception as e:

@@ -1,12 +1,16 @@
-from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi import FastAPI, File, UploadFile, HTTPException, Depends
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
 import shutil
 import os
 from predict import predict_disease
 from database import engine, get_db
 import models
 from sqlalchemy.orm import Session
-from fastapi import Depends
+from remedies import remedies
+from reportlab.pdfgen import canvas
+from reportlab.lib.pagesizes import letter
+import io
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -47,12 +51,96 @@ def predict(file: UploadFile = File(...), db: Session = Depends(get_db)):
             db.commit()
             db.refresh(db_prediction)
             
-            return result
+            # Enrich result with remedies and ID
+            disease_class = result['class']
+            treatment = remedies.get(disease_class, {
+                "description": "No information available.",
+                "remedies": []
+            })
+            
+            response_data = {
+                "id": db_prediction.id,
+                "class": disease_class,
+                "confidence": result['confidence'],
+                "description": treatment["description"],
+                "remedies": treatment["remedies"]
+            }
+            
+            return response_data
         else:
             raise HTTPException(status_code=500, detail="Prediction failed")
             
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/report/{prediction_id}")
+def generate_report(prediction_id: int, db: Session = Depends(get_db)):
+    prediction = db.query(models.Prediction).filter(models.Prediction.id == prediction_id).first()
+    if not prediction:
+        raise HTTPException(status_code=404, detail="Prediction not found")
+        
+    disease_class = prediction.disease_class
+    treatment = remedies.get(disease_class, {
+        "description": "No information available.",
+        "remedies": ["Consult an expert."]
+    })
+    
+    # Create PDF
+    pdf_filename = f"report_{prediction_id}.pdf"
+    pdf_path = os.path.join("temp_reports", pdf_filename)
+    if not os.path.exists("temp_reports"):
+        os.makedirs("temp_reports")
+        
+    c = canvas.Canvas(pdf_path, pagesize=letter)
+    width, height = letter
+    
+    # Title
+    c.setFont("Helvetica-Bold", 24)
+    c.drawString(50, height - 50, "Kisan Drishti Disease Report")
+    
+    # Date
+    c.setFont("Helvetica", 12)
+    c.drawString(50, height - 80, f"Date: {prediction.timestamp.strftime('%Y-%m-%d %H:%M:%S')}")
+    
+    # Prediction
+    c.setFont("Helvetica-Bold", 16)
+    c.drawString(50, height - 120, f"Detected Disease: {disease_class}")
+    c.setFont("Helvetica", 12)
+    c.drawString(50, height - 140, f"Confidence: {prediction.confidence:.2f}%")
+    
+    # Description
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(50, height - 180, "Description:")
+    c.setFont("Helvetica", 12)
+    
+    text_object = c.beginText(50, height - 200)
+    text_object.setFont("Helvetica", 12)
+    # Simple word wrap (very basic)
+    words = treatment["description"].split()
+    line = ""
+    for word in words:
+        if c.stringWidth(line + " " + word) < 500:
+            line += " " + word
+        else:
+            text_object.textLine(line)
+            line = word
+    text_object.textLine(line)
+    c.drawText(text_object)
+    
+    # Remedies
+    y_pos = height - 250
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(50, y_pos, "Recommended Treatments:")
+    
+    y_pos -= 20
+    c.setFont("Helvetica", 12)
+    for remedy in treatment["remedies"]:
+        c.drawString(70, y_pos, f"- {remedy}")
+        y_pos -= 20
+        
+    c.save()
+    
+    return FileResponse(pdf_path, media_type='application/pdf', filename=pdf_filename)
 
 @app.get("/history")
 def get_history(db: Session = Depends(get_db)):
@@ -65,8 +153,11 @@ def get_history(db: Session = Depends(get_db)):
     
     for p in predictions:
         # p.timestamp is naive UTC. We make it aware, then convert to IST.
-        ist_time = p.timestamp.replace(tzinfo=ist_offset)
-        
+        if p.timestamp.tzinfo is None:
+             ist_time = p.timestamp.replace(tzinfo=datetime.timezone.utc).astimezone(ist_offset)
+        else:
+             ist_time = p.timestamp.astimezone(ist_offset)
+
         formatted_history.append({
             "disease": p.disease_class,
             "confidence": p.confidence,

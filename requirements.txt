@@ -439,3 +439,5 @@ zstandard @ file:///C:/b/abs_82dff2ths3/croot/zstandard_1728569207191/work
 fastapi
 uvicorn
 python-multipart
+r e p o r t l a b  
+ 
