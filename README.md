@@ -1,100 +1,87 @@
+<<<<<<< HEAD
 🍎 Kisan Drishti (Fruit Disease Detection AI)
+=======
+# 🍎 Fruit Disease Detection AI
+>>>>>>> 99a4b6c0760f0dc51be3e86010e85584b3dacdab
 
-📖 Overview
+## 📖 Overview
 
-This project is a Deep Learning application designed to detect and classify diseases in fruits (e.g., [Apple, Banana, Orange]). By utilizing Convolutional Neural Networks (CNNs) and Computer Vision, this model analyzes images of fruit leaves or skin to identify potential infections, helping farmers and agriculturists take timely action.
+This project is a Deep Learning application designed to detect and classify diseases in fruits (Orange). By utilizing Convolutional Neural Networks (CNNs) and Computer Vision, this model analyzes images of fruit leaves or skin to identify potential infections, helping farmers and agriculturists take timely action.
 
-🚀 Key Features
+## 🚀 Key Features
 
-High Accuracy: Trained on a dataset of [Number] images.
-
-Multi-Class Classification: Can detect [List diseases, e.g., Apple Scab, Black Rot] and healthy fruits.
-
-Fast Processing: Optimized for quick inference on local machines.
-
+High Accuracy: Trained on a large dataset of images.  
+Fast Processing: Optimized for quick inference on local machines.  
 User-Friendly: Simple script to test custom images.
 
-🛠️ Tech Stack
+## 🛠️ Tech Stack
 
-Language: Python
-
-Deep Learning: TensorFlow / Keras
-
-Image Processing: OpenCV (cv2)
-
+Language: Python  
+Deep Learning: TensorFlow / Keras  
+Image Processing: OpenCV (cv2)  
 Data Handling: NumPy, Pandas
 
-📂 Project Structure
-
-fruitdiseaseai/
-│
+## 📂 Project Structure
+```bash
+./fruitdiseaseai/
 ├── src/                # Source code for training and prediction
 ├── model/              # Saved .keras/.h5 models (Use Git LFS)
 ├── dataset/            # Raw images (Not included in repo)
 ├── requirements.txt    # List of dependencies
 └── README.md           # Project documentation
+```
 
+## ⚙️ Installation & Setup
 
-⚙️ Installation & Setup
-
-1. Clone the Repository
-
-git clone [https://github.com/AryanJadile/fruitdiseaseai.git](https://github.com/AryanJadile/fruitdiseaseai.git)
+### 1. Clone the Repository
+```bash
+git clone https://github.com/AryanJadile/fruitdiseaseai.git
+```
+```bash
 cd fruitdiseaseai
+```
 
+### 2. Create a Virtual Environment (Recommended)
 
-2. Create a Virtual Environment (Recommended)
-
-# Windows
+#### Windows
+```bash
 python -m venv venv
 venv\Scripts\activate
+```
 
-# Mac/Linux
+#### Mac/Linux
+```bash
 python3 -m venv venv
 source venv/bin/activate
+```
 
-
-3. Install Dependencies
-
+### 3. Install Dependencies
+```bash
 pip install -r requirements.txt
+```
 
+### 🧠 How to Run
 
-🧠 How to Run
-
-Training the Model
-
+Training the Model  
 To train the model from scratch using the dataset:
-
+```bash
 python src/train.py
+```
 
-
-Testing / Prediction
+### Testing / Prediction
 
 To detect disease in a specific image:
+```bash
+python predict.py  "path/to/fruit_image.jpg"
+```
 
-python src/predict.py --image "path/to/fruit_image.jpg"
+### 📊 Dataset
+Dataset: [https://data.mendeley.com/datasets/3f83gxmv57/2](https://data.mendeley.com/datasets/3f83gxmv57/2)
+You can also use your custom data to train the model.
 
+### 🚧 Challenges & Future Improvements
 
-📊 Dataset
-
-The dataset used for this project includes images of [Fruit Names].
-
-Source: [Link to Kaggle dataset or "Collected manually"]
-
-Preprocessing: Images resized to [224x224], normalized, and augmented.
-
-🚧 Challenges & Future Improvements
-
-Current Challenge: Handling large model files via Git LFS.
-
-Future Goal: Deploy as a web app using Streamlit or Flask.
-
+Current Challenge: Handling large model files via Git LFS.  
+Future Goal: Deploy as a web app using Streamlit or Flask.  
 Future Goal: Add support for real-time detection via webcam.
-
-🤝 Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any improvements.
-
-📜 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+.
